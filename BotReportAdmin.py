@@ -195,7 +195,7 @@ def download_file_update(chat_id):
 # Обновление базы данных 1 числа каждого месяца
 def update_db():
     today = datetime.date.today()
-    if today.day == 16: 
+    if today.day == 1: 
         data = db.select_all("users")
         print(data)
         users_admin = db.select_all("admin")
