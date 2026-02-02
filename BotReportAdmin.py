@@ -10,8 +10,9 @@ import traceback
 import database as db
 import report_excel as rep
 from telebot import types
+from config import settings
 
-TOKEN = ''    # Токен бота из @BotFather
+TOKEN = settings.bot.admin_token   # Токен бота из @BotFather
 bot = telebot.TeleBot(TOKEN)                                # Основной класс для синхронного бота
 condition_users = {}                                        # Список состояний пользователя
 
@@ -24,7 +25,7 @@ def log_errors():
             except Exception as e:
                 # with open('errors.log', 'a') as f:
                 #     f.write(f"[{datetime.datetime.now()}] Ошибка в {handler_func.__name__}: {e}\n")
-                with open('errors.log', 'a', encoding='utf-8') as f:
+                with open('shared/errors.log', 'a', encoding='utf-8') as f:
                     f.write(f"{'='*120}\n")
                     f.write(f"[{datetime.datetime.now()}]\n")
                     f.write(f"{traceback.format_exc()}\n")
@@ -176,11 +177,11 @@ def show_users(chat_id):
 # Отправка сообщения с файлом отчёта
 def download_file(message):
     file = rep.ReportExcel()
-    doc = open(file.name_file, 'rb')
+    doc = open(f"shared/{file.name_file}", 'rb')
     bot.send_document(message.chat.id, doc)
     doc.close()
-    if os.path.exists(file.name_file):   
-        os.remove(file.name_file)        
+    if os.path.exists(f"shared/{file.name_file}"):   
+        os.remove(f"shared/{file.name_file}")        
         print("Файл удалён")
     else:
         print("Файл не найден")
@@ -188,7 +189,7 @@ def download_file(message):
 # Отправка сообщения с файлом отчёта 1 числа каждого месяца
 def download_file_update(chat_id):
     file = rep.ReportExcel()
-    doc = open(file.name_file, 'rb')
+    doc = open(f"shared/{file.name_file}", 'rb')
     bot.send_document(chat_id, doc)
     doc.close()
 

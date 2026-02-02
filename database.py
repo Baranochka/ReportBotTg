@@ -5,7 +5,7 @@ class Connection:
         self.cursor = None
     
     def open_connection(self):
-        self.conn = sqlite3.connect(f'users.db')
+        self.conn = sqlite3.connect(f'shared/users.db')
         self.cursor = self.conn.cursor()
     
     def close_connection(self):

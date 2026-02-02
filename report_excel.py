@@ -83,7 +83,7 @@ class ReportExcel:
         sheet.column_dimensions["B"].width = 30   # ширина колонки B
         self.name_file = f"Отчёт-на-{str(date.today())}.xlsx"
         # Сохраняем файл
-        wb.save(self.name_file)
+        wb.save(f"shared/{self.name_file}")
 
 def repeat(sheet, row, data, val, title):
     fill_yellow2 = PatternFill(start_color="fffc00", end_color="fffc00", fill_type="solid") # Светло-Желтый цвет

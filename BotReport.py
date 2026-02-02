@@ -6,8 +6,9 @@ import threading
 import traceback
 import database as db
 from telebot import types
+from config import settings
 
-TOKEN = ''    # Токен бота из @BotFather
+TOKEN = settings.bot.token    # Токен бота из @BotFather
 bot = telebot.TeleBot(TOKEN)                                # Основной класс для синхронного бота
 condition_users = {}                                        # Список состояний пользователя
 cond_users_comm = {}                                        # Список состояний пользователя при написании комментариев
@@ -58,7 +59,7 @@ def log_errors():
                 # Логируем ошибку
                 # with open('errors.log', 'a') as f:
                 #     f.write(f"[{datetime.datetime.now()}] Ошибка в {handler_func.__name__}: {e}\n")
-                with open('errors.log', 'a', encoding='utf-8') as f:
+                with open('shared/errors.log', 'a', encoding='utf-8') as f:
                     f.write(f"{'='*120}\n")
                     f.write(f"[{datetime.datetime.now()}]\n")
                     f.write(f"{traceback.format_exc()}\n")

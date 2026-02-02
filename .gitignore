@@ -129,6 +129,7 @@ celerybeat.pid
 
 # Environments
 .env
+.env.dev
 .venv
 env/
 venv/
@@ -183,3 +184,4 @@ Token.txt
 Sqllite.py
 work_sql.py
 /Последнее
+/shared
